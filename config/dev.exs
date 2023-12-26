@@ -4,7 +4,7 @@ import Config
 config :rent_cars, RentCars.Repo,
   username: "postgres",
   password: "postgres",
-  hostname: "db",
+  hostname: "localhost",
   database: "rent_cars_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
