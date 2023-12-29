@@ -1,4 +1,5 @@
 defmodule RentCarsWeb.Api.CategoryJSON do
+  alias RentCars.Categories.Category
   # If you want to customize a particular status code,
   # you may add your own clauses, such as:
   #
@@ -9,15 +10,24 @@ defmodule RentCarsWeb.Api.CategoryJSON do
   # By default, Phoenix returns the status message from
   # the template name. For example, "404.json" becomes
   # "Not Found".
-  def render("index.json", %{categories: categories}) do
-    %{data: many_category(categories)}
+
+  def index(%{categories: categories}) do
+    %{
+      data: Enum.map(categories, &data/1)
+    }
   end
 
-  defp many_category(categories) when is_list(categories) do
-    Enum.reduce(categories, [], fn elem, acc ->
-      [render("category.json", %{category: elem}) | acc]
-    end)
+  def show(%{category: category}) do
+    %{data: data(category)}
   end
 
-  defp many_category(_categories), do: []
+  def data(%Category{} = category) do
+    %{
+      id: category.id,
+      name: category.name,
+      description: category.description,
+      inserted_at: category.inserted_at,
+      updated_at: category.updated_at
+    }
+  end
 end
