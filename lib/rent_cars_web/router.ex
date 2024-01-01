@@ -21,10 +21,12 @@ defmodule RentCarsWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  scope "/api", RentCarsWeb.Api do
+  scope "/api", RentCarsWeb.Api, as: :api do
     pipe_through :api
 
     get "/categories", CategoryController, :index
+    post "/categories", CategoryController, :create
+    get "/categories/:id", CategoryController, :show
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

@@ -23,7 +23,7 @@ defmodule RentCarsWeb.ConnCase do
       @endpoint RentCarsWeb.Endpoint
 
       use RentCarsWeb, :verified_routes
-
+      alias RentCarsWeb.Router.Helpers, as: Routes
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest

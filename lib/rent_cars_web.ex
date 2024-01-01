@@ -21,7 +21,7 @@ defmodule RentCarsWeb do
 
   def router do
     quote do
-      use Phoenix.Router, helpers: false
+      use Phoenix.Router, helpers: true
 
       # Import common connection and controller functions to use in pipelines
       import Plug.Conn
@@ -86,6 +86,7 @@ defmodule RentCarsWeb do
       # Core UI components and translation
       import RentCarsWeb.CoreComponents
       import RentCarsWeb.Gettext
+      import Phoenix.LiveView.Helpers
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
