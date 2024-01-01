@@ -24,18 +24,9 @@ defmodule RentCarsWeb.Api.CategoryControllerTest do
   end
 
   test "try to create category when data is invalid", %{conn: conn} do
-    attrs = %{name: "SUV", description: "petrol car"}
+    attrs = %{description: "petrol car"}
     conn = post(conn, Routes.api_category_path(conn, :create, category: attrs))
-    assert %{"id" => id} = json_response(conn, 201)["data"]
 
-    conn = get(conn, Routes.api_category_path(conn, :show, id))
-    name = attrs.name
-    description = attrs.description
-
-    assert %{
-             "id" => ^id,
-             "name" => ^name,
-             "description" => ^description
-           } = json_response(conn, 200)["data"]
+    assert json_response(conn, 422)["errors"] == %{"name" => ["can't be blank"]}
   end
 end
