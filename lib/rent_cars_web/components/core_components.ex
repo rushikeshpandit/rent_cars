@@ -18,6 +18,7 @@ defmodule RentCarsWeb.CoreComponents do
 
   alias Phoenix.LiveView.JS
   import RentCarsWeb.Gettext
+  alias Phoenix.HTML.Form
 
   @doc """
   Renders a modal.
@@ -303,7 +304,7 @@ defmodule RentCarsWeb.CoreComponents do
   def input(%{type: "checkbox"} = assigns) do
     assigns =
       assign_new(assigns, :checked, fn ->
-        Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
+        Form.normalize_value("checkbox", assigns[:value])
       end)
 
     ~H"""
