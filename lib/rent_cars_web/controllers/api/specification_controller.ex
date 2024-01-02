@@ -16,7 +16,7 @@ defmodule RentCarsWeb.Api.SpecificationController do
            Specifications.create_specification(specification_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", ~p"/api/api/specifications/#{specification}")
+      |> put_resp_header("location", ~p"/api/specifications/#{specification}")
       |> render(:show, specification: specification)
     end
   end

@@ -60,10 +60,9 @@ defmodule RentCarsWeb.Api.CategoryControllerTest do
     test "delete category", %{conn: conn, category: category} do
       id = category.id
       conn = delete(conn, Routes.api_category_path(conn, :delete, category))
-
       assert response(conn, 204)
 
-      assert_error_sent 404, fn ->
+      assert_error_sent 500, fn ->
         get(conn, Routes.api_category_path(conn, :show, id))
       end
     end

@@ -21,17 +21,17 @@ defmodule RentCarsWeb.Api.SpecificationControllerTest do
 
   describe "index" do
     test "lists all specifications", %{conn: conn} do
-      conn = get(conn, ~p"/api/api/specifications")
+      conn = get(conn, ~p"/api/specifications")
       assert json_response(conn, 200)["data"] == []
     end
   end
 
   describe "create specification" do
     test "renders specification when data is valid", %{conn: conn} do
-      conn = post(conn, ~p"/api/api/specifications", specification: @create_attrs)
+      conn = post(conn, ~p"/api/specifications", specification: @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      conn = get(conn, ~p"/api/api/specifications/#{id}")
+      conn = get(conn, ~p"/api/specifications/#{id}")
 
       assert %{
                "id" => ^id,
@@ -41,7 +41,7 @@ defmodule RentCarsWeb.Api.SpecificationControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, ~p"/api/api/specifications", specification: @invalid_attrs)
+      conn = post(conn, ~p"/api/specifications", specification: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -53,10 +53,10 @@ defmodule RentCarsWeb.Api.SpecificationControllerTest do
       conn: conn,
       specification: %Specification{id: id} = specification
     } do
-      conn = put(conn, ~p"/api/api/specifications/#{specification}", specification: @update_attrs)
+      conn = put(conn, ~p"/api/specifications/#{specification}", specification: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
-      conn = get(conn, ~p"/api/api/specifications/#{id}")
+      conn = get(conn, ~p"/api/specifications/#{id}")
 
       assert %{
                "id" => ^id,
@@ -67,7 +67,7 @@ defmodule RentCarsWeb.Api.SpecificationControllerTest do
 
     test "renders errors when data is invalid", %{conn: conn, specification: specification} do
       conn =
-        put(conn, ~p"/api/api/specifications/#{specification}", specification: @invalid_attrs)
+        put(conn, ~p"/api/specifications/#{specification}", specification: @invalid_attrs)
 
       assert json_response(conn, 422)["errors"] != %{}
     end
@@ -77,11 +77,11 @@ defmodule RentCarsWeb.Api.SpecificationControllerTest do
     setup [:create_specification]
 
     test "deletes chosen specification", %{conn: conn, specification: specification} do
-      conn = delete(conn, ~p"/api/api/specifications/#{specification}")
+      conn = delete(conn, ~p"/api/specifications/#{specification}")
       assert response(conn, 204)
 
       assert_error_sent 404, fn ->
-        get(conn, ~p"/api/api/specifications/#{specification}")
+        get(conn, ~p"/api/specifications/#{specification}")
       end
     end
   end
