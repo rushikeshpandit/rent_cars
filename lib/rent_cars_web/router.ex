@@ -29,6 +29,8 @@ defmodule RentCarsWeb.Router do
     get "/categories/:id", CategoryController, :show
     put "/categories/:id", CategoryController, :update
     delete "/categories/:id", CategoryController, :delete
+
+    resources "/specifications", SpecificationController
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
