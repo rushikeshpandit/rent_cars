@@ -24,12 +24,8 @@ defmodule RentCarsWeb.Router do
   scope "/api", RentCarsWeb.Api, as: :api do
     pipe_through :api
 
-    get "/categories", CategoryController, :index
-    post "/categories", CategoryController, :create
-    get "/categories/:id", CategoryController, :show
-    put "/categories/:id", CategoryController, :update
-    delete "/categories/:id", CategoryController, :delete
-
+    resources "/accounts", AccountsController
+    resources "/categories", CategoryController
     resources "/specifications", SpecificationController
   end
 
