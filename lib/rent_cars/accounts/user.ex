@@ -37,6 +37,24 @@ defmodule RentCars.Accounts.User do
     |> hash_password()
   end
 
+  def changeset(attrs) do
+    %__MODULE__{}
+    |> cast(attrs, @fields ++ @required_fields)
+    |> validate_required(@required_fields)
+    |> validate_format(:email, ~r/@/, message: "Enter valid email")
+    |> update_change(:email, &String.downcase/1)
+    |> validate_length(:password,
+      min: 6,
+      max: 100,
+      message: "Password should be minimum 6 characters"
+    )
+    |> validate_confirmation(:password, message: "Password does not match")
+    |> unique_constraint(:drive_license)
+    |> unique_constraint(:email)
+    |> unique_constraint(:user_name)
+    |> hash_password()
+  end
+
   defp hash_password(%{valid?: true, changes: %{password: password}} = changeset) do
     change(changeset, Argon2.add_hash(password))
   end

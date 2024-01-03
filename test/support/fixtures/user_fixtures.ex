@@ -1,4 +1,4 @@
-defmodule RentCars.AccountsFixtures do
+defmodule RentCars.UserFixtures do
   alias RentCars.Accounts
 
   def user_attrs(attrs \\ %{}) do
@@ -16,7 +16,7 @@ defmodule RentCars.AccountsFixtures do
     Enum.into(attrs, valid_attrs)
   end
 
-  def account_fixture(attrs \\ %{}) do
+  def user_fixture(attrs \\ %{}) do
     {:ok, user} =
       attrs
       |> user_attrs()

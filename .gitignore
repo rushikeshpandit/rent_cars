@@ -37,3 +37,4 @@ npm-debug.log
 
 mix.lock
 
+.elixir_ls/*

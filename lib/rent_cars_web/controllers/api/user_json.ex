@@ -1,4 +1,4 @@
-defmodule RentCarsWeb.Api.AccountsJSON do
+defmodule RentCarsWeb.Api.UserJSON do
   alias RentCars.Accounts.User
   # If you want to customize a particular status code,
   # you may add your own clauses, such as:
