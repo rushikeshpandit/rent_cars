@@ -21,8 +21,8 @@ defmodule RentCars.Accounts.User do
     timestamps()
   end
 
-  def changeset(attrs) do
-    %__MODULE__{}
+  def changeset(user, attrs) do
+    user
     |> cast(attrs, @fields ++ @required_fields)
     |> validate_required(@required_fields)
     |> validate_format(:email, ~r/@/, message: "Enter valid email")
