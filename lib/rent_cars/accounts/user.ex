@@ -49,7 +49,9 @@ defmodule RentCars.Accounts.User do
       message: "Password should be minimum 6 characters"
     )
     |> validate_confirmation(:password, message: "Password does not match")
-    |> unique_constraint([:drive_license, :email, :user_name])
+    |> unique_constraint(:drive_license)
+    |> unique_constraint(:email)
+    |> unique_constraint(:user_name)
     |> hash_password()
   end
 

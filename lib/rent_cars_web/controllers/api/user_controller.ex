@@ -18,19 +18,19 @@ defmodule RentCarsWeb.Api.UserController do
     render(conn, :show, user: user)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user(id)
+  # def update(conn, %{"id" => id, "user" => user_params}) do
+  #   user = Accounts.get_user(id)
 
-    with {:ok, user} <- Accounts.update_user(user, user_params) do
-      render(conn, :show, user: user)
-    end
-  end
+  #   with {:ok, user} <- Accounts.update_user(user, user_params) do
+  #     render(conn, :show, user: user)
+  #   end
+  # end
 
-  def delete(conn, %{"id" => id}) do
-    user = Accounts.get_user(id)
+  # def delete(conn, %{"id" => id}) do
+  #   user = Accounts.get_user(id)
 
-    with {:ok, _user} <- Accounts.delete_user(user) do
-      send_resp(conn, :no_content, "")
-    end
-  end
+  #   with {:ok, _user} <- Accounts.delete_user(user) do
+  #     send_resp(conn, :no_content, "")
+  #   end
+  # end
 end

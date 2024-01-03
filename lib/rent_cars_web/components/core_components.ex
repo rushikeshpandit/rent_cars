@@ -18,7 +18,7 @@ defmodule RentCarsWeb.CoreComponents do
 
   alias Phoenix.LiveView.JS
   import RentCarsWeb.Gettext
-  alias Phoenix.HTML.Form
+  alias Phoenix.HTML.{Form, FormField}
 
   @doc """
   Renders a modal.
@@ -277,7 +277,7 @@ defmodule RentCarsWeb.CoreComponents do
     values: ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week)
 
-  attr :field, Phoenix.HTML.FormField,
+  attr :field, FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
 
   attr :errors, :list, default: []
@@ -292,7 +292,7 @@ defmodule RentCarsWeb.CoreComponents do
 
   slot :inner_block
 
-  def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+  def input(%{field: %FormField{} = field} = assigns) do
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
     |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))

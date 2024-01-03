@@ -1,6 +1,15 @@
 defmodule RentCars.AccountsTest do
   use RentCars.DataCase
   alias RentCars.Accounts
+  import RentCars.UserFixtures
+
+  describe "get user" do
+    test "get_user/1" do
+      user = user_fixture()
+
+      assert Accounts.get_user(user.id).email == user.email
+    end
+  end
 
   describe "create user" do
     test "creat_user/1 with valid data" do
