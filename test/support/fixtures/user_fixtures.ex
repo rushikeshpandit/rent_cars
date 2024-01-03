@@ -1,4 +1,4 @@
-defmodule RentCars.AccountsFixtures do
+defmodule RentCars.UserFixtures do
   alias RentCars.Accounts
 
   def user_attrs(attrs \\ %{}) do
