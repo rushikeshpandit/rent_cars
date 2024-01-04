@@ -9,7 +9,7 @@ defmodule RentCars.UserFixtures do
         user_name: "rushikeshpandit",
         password: "Rushi@7588",
         password_confirmation: "Rushi@7588",
-        email: "RUSHIKESH.d.pandit@gmail.com",
+        email: "rushikesh.d.pandit@gmail.com",
         drive_license: "123456"
       }
 
