@@ -16,7 +16,6 @@ defmodule RentCarsWeb.Router do
 
   scope "/", RentCarsWeb do
     pipe_through :browser
-
   end
 
   # Other scopes may use custom stacks.
@@ -28,6 +27,7 @@ defmodule RentCarsWeb.Router do
     resources "/specifications", SpecificationController
     post "/session", SessionController, :create
     post "/session/me", SessionController, :me
+    post "/session/reset_password", SessionController, :reset_password
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
