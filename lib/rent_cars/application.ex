@@ -17,7 +17,8 @@ defmodule RentCars.Application do
       # Start a worker by calling: RentCars.Worker.start_link(arg)
       # {RentCars.Worker, arg},
       # Start to serve requests, typically the last entry
-      RentCarsWeb.Endpoint
+      RentCarsWeb.Endpoint,
+      {Finch, name: Swoosh.Finch}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
