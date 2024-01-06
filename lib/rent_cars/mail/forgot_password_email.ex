@@ -1,6 +1,8 @@
 defmodule RentCars.Mail.ForgotPasswordEmail do
-  @view RentCarsWeb.EmailHTML
-  use Phoenix.Swoosh, view: @view, layout: {@view, :layout}
+  use Phoenix.Swoosh,
+    template_root: "lib/rent_cars_web/controllers",
+    template_path: "email_html"
+
   import Swoosh.Email
   alias RentCars.Mailer
 
