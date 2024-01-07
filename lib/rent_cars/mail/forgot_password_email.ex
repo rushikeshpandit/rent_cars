@@ -13,7 +13,7 @@ defmodule RentCars.Mail.ForgotPasswordEmail do
     |> to({user.first_name, user.email})
     |> from({"Rushikesh Pandit", "rushikesh.d.pandit@gmail.com"})
     |> subject("Rent cars - Reset Password")
-    |> render_body(:forgot_password, %{first_name: user.first_name, url: url})
+    |> render_body("forgot_password.html", %{first_name: user.first_name, url: url})
   end
 
   def send_forgot_password_email(user, token) do
