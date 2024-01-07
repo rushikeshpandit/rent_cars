@@ -24,14 +24,14 @@ defmodule RentCarsWeb.Api.SesionsControllerTest do
       assert json_response(conn, 200)["data"]["user"]["data"]["email"] == user.email
     end
 
-    test "reset password", %{conn: conn, user: user} do
+    test "forgot password", %{conn: conn, user: user} do
       conn =
         post(
           conn,
           Routes.api_session_path(conn, :forgot_password, email: user.email)
         )
 
-      assert json_response(conn, 204) == ""
+      assert response(conn, 204) == ""
     end
   end
 end
