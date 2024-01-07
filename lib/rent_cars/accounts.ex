@@ -8,9 +8,9 @@ defmodule RentCars.Accounts do
     |> Repo.insert()
   end
 
-  def update_user(user, attrs) do
+  def update_user(user, params) do
     user
-    |> User.changeset(attrs)
+    |> User.update_user(params)
     |> Repo.update()
   end
 

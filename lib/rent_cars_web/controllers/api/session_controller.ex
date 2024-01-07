@@ -30,4 +30,12 @@ defmodule RentCarsWeb.Api.SessionController do
       |> text("")
     end
   end
+
+  def reset_password(conn, params) do
+    with {:ok, user} <- Sessions.reset_password(params) do
+      session = %{user: user, token: nil}
+      conn
+      |> render(:show, session: session)
+    end
+  end
 end
