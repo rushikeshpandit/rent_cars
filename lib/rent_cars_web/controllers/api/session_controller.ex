@@ -1,7 +1,7 @@
 defmodule RentCarsWeb.Api.SessionController do
   use RentCarsWeb, :controller
   alias RentCars.Sessions
-  action_fallback RentCarsWeb.Api.FallbackController
+  action_fallback RentCarsWeb.FallbackController
 
   def create(conn, %{"email" => email, "password" => password}) do
     with {:ok, user, token} <- Sessions.create(email, password) do
@@ -34,6 +34,7 @@ defmodule RentCarsWeb.Api.SessionController do
   def reset_password(conn, params) do
     with {:ok, user} <- Sessions.reset_password(params) do
       session = %{user: user, token: nil}
+
       conn
       |> render(:show, session: session)
     end

@@ -2,7 +2,7 @@ defmodule RentCarsWeb.Api.UserController do
   use RentCarsWeb, :controller
   alias RentCars.Accounts
   alias RentCarsWeb.Router.Helpers, as: Routes
-  action_fallback RentCarsWeb.Api.FallbackController
+  action_fallback RentCarsWeb.FallbackController
 
   def create(conn, %{"user" => user}) do
     with {:ok, user} <- Accounts.create_user(user) do
