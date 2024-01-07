@@ -27,6 +27,7 @@ defmodule RentCarsWeb.Router do
     resources "/specifications", SpecificationController
     post "/session", SessionController, :create
     post "/session/me", SessionController, :me
+    post "/session/forgot_password", SessionController, :forgot_password
     post "/session/reset_password", SessionController, :reset_password
   end
 

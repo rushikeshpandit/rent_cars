@@ -21,24 +21,12 @@ defmodule RentCars.Accounts.User do
     timestamps()
   end
 
-  def changeset(user, attrs) do
-    user
-    |> cast(attrs, @fields ++ @required_fields)
-    |> validate_required(@required_fields)
-    |> validate_format(:email, ~r/@/, message: "Enter valid email")
-    |> update_change(:email, &String.downcase/1)
-    |> validate_length(:password,
-      min: 6,
-      max: 100,
-      message: "Password should be minimum 6 characters"
-    )
-    |> validate_confirmation(:password, message: "Password does not match")
-    |> unique_constraint([:drive_license, :email, :user_name])
-    |> hash_password()
+  def changeset(attrs) do
+    changeset(%__MODULE__{}, attrs)
   end
 
-  def changeset(attrs) do
-    %__MODULE__{}
+  def changeset(user, attrs) do
+    user
     |> cast(attrs, @fields ++ @required_fields)
     |> validate_required(@required_fields)
     |> validate_format(:email, ~r/@/, message: "Enter valid email")
@@ -60,4 +48,8 @@ defmodule RentCars.Accounts.User do
   end
 
   defp hash_password(changeset), do: changeset
+
+  def update_user(user, params) do
+    changeset(user, params)
+  end
 end

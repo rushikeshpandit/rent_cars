@@ -7,7 +7,7 @@ defmodule RentCars.Mail.ForgotPasswordEmail do
   alias RentCars.Mailer
 
   def create_email(user, token) do
-    url = "/sessions/reset_password?token=#{token}"
+    url = "/sessions/forgot_password?token=#{token}"
 
     new()
     |> to({user.first_name, user.email})
