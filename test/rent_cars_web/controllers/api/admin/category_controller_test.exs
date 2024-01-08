@@ -1,51 +1,57 @@
 defmodule RentCarsWeb.Api.Admin.CategoryControllerTest do
   use RentCarsWeb.ConnCase
   import RentCars.CategoriesFixtures
-  setup :include_admin_token
 
-  test "list all categories", %{conn: conn} do
+  test "throw error when try listing categories without permission", %{conn: conn} do
     conn = get(conn, Routes.api_admin_category_path(conn, :index))
-
-    assert json_response(conn, 200)["data"] == []
+    assert json_response(conn, 401)["error"] == "User does not have this permission."
   end
 
-  test "create category when data is valid", %{conn: conn} do
-    attrs = %{name: "SUV", description: "petrol car"}
-    conn = post(conn, Routes.api_admin_category_path(conn, :create, category: attrs))
-    assert %{"id" => id} = json_response(conn, 201)["data"]
+  describe "categories test" do
+    setup :include_admin_token
 
-    conn = get(conn, Routes.api_admin_category_path(conn, :show, id))
-    name = attrs.name
-    description = attrs.description
+    test "list all categories", %{conn: conn} do
+      conn = get(conn, Routes.api_admin_category_path(conn, :index))
+      assert json_response(conn, 200)["data"] == []
+    end
 
-    assert %{
-             "id" => ^id,
-             "name" => ^name,
-             "description" => ^description
-           } = json_response(conn, 200)["data"]
-  end
+    test "create category when data is valid", %{conn: conn} do
+      attrs = %{name: "Sport", description: "pumpkin 123"}
+      conn = post(conn, Routes.api_admin_category_path(conn, :create, category: attrs))
+      assert %{"id" => id} = json_response(conn, 201)["data"]
 
-  test "try to create category when data is invalid", %{conn: conn} do
-    attrs = %{description: "petrol car"}
-    conn = post(conn, Routes.api_admin_category_path(conn, :create, category: attrs))
+      conn = get(conn, Routes.api_admin_category_path(conn, :show, id))
 
-    assert json_response(conn, 422)["errors"] == %{"name" => ["can't be blank"]}
+      name = String.upcase(attrs.name)
+      description = attrs.description
+
+      assert %{
+               "id" => ^id,
+               "name" => ^name,
+               "description" => ^description
+             } = json_response(conn, 200)["data"]
+    end
+
+    test "try to create category when data is invalid", %{conn: conn} do
+      attrs = %{description: "pumpkin 123"}
+      conn = post(conn, Routes.api_admin_category_path(conn, :create, category: attrs))
+      assert json_response(conn, 422)["errors"] == %{"name" => ["can't be blank"]}
+    end
   end
 
   describe "update category" do
-    setup [:create_category]
+    setup [:create_category, :include_admin_token]
 
     test "update category with valid data", %{conn: conn, category: category} do
       conn =
-        put(
-          conn,
-          Routes.api_admin_category_path(conn, :update, category),
+        put(conn, Routes.api_admin_category_path(conn, :update, category),
           category: %{name: "update category name"}
         )
 
       assert %{"id" => id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.api_admin_category_path(conn, :show, id))
+
       name = String.upcase("update category name")
 
       assert %{
@@ -56,7 +62,7 @@ defmodule RentCarsWeb.Api.Admin.CategoryControllerTest do
   end
 
   describe "delete category" do
-    setup [:create_category]
+    setup [:create_category, :include_admin_token]
 
     test "delete category", %{conn: conn, category: category} do
       id = category.id
