@@ -11,7 +11,7 @@ defmodule RentCars.Sessions.ResetPasswordTest do
 
     params = %{
       "token" => token,
-      "user" => %{"password" => "adm@elxpro.coM1", "password_confirmation" => "adm@elxpro.coM1"}
+      "user" => %{"password" => "adm@elxpro.coM1", "password_confirmation" => user.email}
     }
 
     assert {:ok, user_return} = ResetPassword.execute(params)

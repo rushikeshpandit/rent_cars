@@ -1,6 +1,7 @@
 defmodule RentCarsWeb.Api.AccountControllerTest do
   use RentCarsWeb.ConnCase
   import RentCars.UserFixtures
+  setup :include_normal_user_token
 
   test "create user when data is valid", %{conn: conn} do
     attrs = user_attrs()
