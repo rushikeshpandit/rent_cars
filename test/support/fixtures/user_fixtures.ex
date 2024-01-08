@@ -6,16 +6,17 @@ defmodule RentCars.UserFixtures do
       %{
         first_name: "rushikesh",
         last_name: "pandit",
-        user_name: "rushikeshpandit",
+        user_name: "rushikeshpandit#{:rand.uniform(10_000)}",
         password: "Rushi@7588",
         password_confirmation: "Rushi@7588",
-        email: "rushikesh.d.pandit@gmail.com",
-        drive_license: "123456"
+        email: "rushikesh.d.pandit#{:rand.uniform(10_000)}@gmail.com",
+        drive_license: "dr #{:rand.uniform(10_000)}"
       }
 
     Enum.into(attrs, valid_attrs)
   end
 
+  @spec user_fixture(any()) :: any()
   def user_fixture(attrs \\ %{}) do
     {:ok, user} =
       attrs
