@@ -1,4 +1,4 @@
-defmodule RentCarsWeb.Api.CategoryJSON do
+defmodule RentCarsWeb.Api.Admin.CategoryJSON do
   alias RentCars.Categories.Category
   # If you want to customize a particular status code,
   # you may add your own clauses, such as:
