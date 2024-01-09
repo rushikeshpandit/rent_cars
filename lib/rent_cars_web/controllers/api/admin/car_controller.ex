@@ -25,6 +25,6 @@ defmodule RentCarsWeb.Api.Admin.CarController do
 
   def show(conn, %{"id" => id}) do
     car = Cars.get_car!(id)
-    render(conn,:show, car: car)
+    render(conn, :show, car: car)
   end
 end
