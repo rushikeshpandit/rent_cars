@@ -32,7 +32,7 @@ defmodule RentCarsWeb.Api.Admin.CarJSON do
 
   defp load_specifications(specifications) do
     if Ecto.assoc_loaded?(specifications) do
-      SpecificationJSON.index(specifications)
+      SpecificationJSON.index(%{specifications: specifications})
     else
       nil
     end
