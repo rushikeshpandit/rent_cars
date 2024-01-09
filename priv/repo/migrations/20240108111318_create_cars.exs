@@ -23,7 +23,6 @@ defmodule RentCars.Repo.Migrations.CreateCars do
     end
 
     create unique_index(:cars, [:license_plate])
-
     create index(:cars, [:category_id])
   end
 end
