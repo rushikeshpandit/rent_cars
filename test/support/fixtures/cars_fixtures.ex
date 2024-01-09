@@ -5,34 +5,25 @@ defmodule RentCars.CarsFixtures do
   def car_attrs(attrs \\ %{}) do
     category = category_fixture()
 
-    valid_attrs =
-      %{
-        name: "Honda City",
-        description: "Good car",
-        brand: "Honda",
-        daily_rate: 100,
-        license_plate: "adfdf #{:rand.uniform(10_000)}",
-        fine_amount: 30,
-        category_id: category.id,
-        specifications: [
-          %{
-            name: "wheels",
-            description: "4 wheels"
-          },
-          %{
-            name: "steering",
-            description: "electric"
-          },
-          %{
-            name: "navigation",
-            description: "navigation included"
-          },
-          %{
-            name: "cruze control",
-            description: "cruze control included"
-          }
-        ]
-      }
+    valid_attrs = %{
+      name: "Lancer",
+      description: "good car",
+      brand: "Mitsubishi",
+      daily_rate: 100,
+      license_plate: "adfdf #{:rand.uniform(10_000)}",
+      fine_amount: 30,
+      category_id: category.id,
+      specifications: [
+        %{
+          name: "wheels",
+          description: "pumpkin"
+        },
+        %{
+          name: "pumpkin wheels",
+          description: "1323"
+        }
+      ]
+    }
 
     Enum.into(attrs, valid_attrs)
   end
