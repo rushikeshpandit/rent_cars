@@ -37,6 +37,10 @@ defmodule RentCarsWeb.Router do
 
       resources "/categories", CategoryController
       resources "/specifications", SpecificationController
+
+      post "/car", CarController, :create
+      put "/car/:id", CarController, :update
+      get "/car/:id", CarController, :show
     end
 
     scope "/" do
