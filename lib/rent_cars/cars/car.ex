@@ -7,20 +7,19 @@ defmodule RentCars.Cars.Car do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  @fields ~w/ available brand daily_rate description fine_amount license_plate name category_id/a
-
+  @fields ~w/available brand daily_rate description fine_amount license_plate name category_id/a
   schema "cars" do
-    field :name, :string
-    field :description, :string
     field :available, :boolean, default: true
     field :brand, :string
     field :daily_rate, :integer
+    field :description, :string
     field :fine_amount, :integer
     field :license_plate, :string
+    field :name, :string
     belongs_to :category, Category
     many_to_many :specifications, Specification, join_through: CarSpecification
 
-    timestamps(type: :utc_datetime)
+    timestamps()
   end
 
   @doc false
