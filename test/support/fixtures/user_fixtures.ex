@@ -16,7 +16,6 @@ defmodule RentCars.UserFixtures do
     Enum.into(attrs, valid_attrs)
   end
 
-  @spec user_fixture(any()) :: any()
   def user_fixture(attrs \\ %{}) do
     {:ok, user} =
       attrs
