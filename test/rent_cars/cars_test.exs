@@ -67,13 +67,29 @@ defmodule RentCars.CarsTest do
   end
 
   test "list all available cars" do
-     category = category_fixture()
-     car_fixture(%{category_id: category.id})
-     car_fixture(%{category_id: category.id, name: "pumpkin"})
-     car_fixture(%{available: false, category_id: category.id})
+    category = category_fixture()
+    car_fixture(%{category_id: category.id})
+    car_fixture(%{category_id: category.id, name: "pumpkin"})
+    car_fixture(%{available: false, category_id: category.id})
 
-     assert Cars.list_cars() |> Enum.count() == 2
+    assert Cars.list_cars() |> Enum.count() == 2
 
-     assert Cars.list_cars(name: "pump") |> Enum.count() == 1
-   end
+    assert Cars.list_cars(name: "pump") |> Enum.count() == 1
+  end
+
+  test "list cars by brand" do
+    category = category_fixture()
+    car_fixture(%{category_id: category.id, brand: "pumpkin"})
+    car_fixture(%{category_id: category.id, name: "pumpkin"})
+
+    assert Cars.list_cars(brand: "pum") |> Enum.count() == 1
+  end
+
+  test "list cars by category" do
+    category = category_fixture(%{name: "pumpkin"})
+    car_fixture(%{brand: "pumpkin"})
+    car_fixture(%{category_id: category.id, name: "pumpkin"})
+
+    assert Cars.list_cars(category: "pum") |> Enum.count() == 1
+  end
 end
