@@ -23,7 +23,7 @@ defmodule RentCarsWeb.Api.Admin.CarJSON do
       brand: car.brand,
       daily_rate: car.daily_rate,
       license_plate: car.license_plate,
-      fine_amount: car.fine_amount,
+      fine_amount: Money.to_string(car.fine_amount),
       category_id: car.category_id,
       specifications: load_specifications(car.specifications),
       name: car.name
