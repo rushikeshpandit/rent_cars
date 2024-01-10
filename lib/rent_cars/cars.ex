@@ -18,17 +18,28 @@ defmodule RentCars.Cars do
     |> Repo.update()
   end
 
-   def list_cars(filter_params \\ []) do
-     query = where(Car, [c], c.available == true)
-     # TODO load car_images
+  def list_cars(filter_params \\ []) do
+    query = where(Car, [c], c.available == true)
+    # TODO load car_images
 
-     filter_params
-     |> Enum.reduce(query, fn
-       {:name, name}, query ->
-         name = "%" <> name <> "%"
-         where(query, [c], ilike(c.name, ^name))
-     end)
-     |> preload([:specifications])
-     |> Repo.all()
-   end
+    filter_params
+    |> Enum.reduce(query, fn
+      {:name, name}, query ->
+        name = "%" <> name <> "%"
+        where(query, [c], ilike(c.name, ^name))
+
+      {:brand, brand}, query ->
+        brand = "%" <> brand <> "%"
+        where(query, [c], ilike(c.brand, ^brand))
+
+      {:category, category}, query ->
+        category = "%" <> category <> "%"
+
+        query
+        |> join(:inner, [c], ca in assoc(c, :category))
+        |> where([_c, ca], ilike(ca.name, ^category))
+    end)
+    |> preload([:specifications])
+    |> Repo.all()
+  end
 end
