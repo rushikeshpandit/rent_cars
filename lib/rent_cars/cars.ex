@@ -20,7 +20,6 @@ defmodule RentCars.Cars do
 
   def list_cars(filter_params \\ []) do
     query = where(Car, [c], c.available == true)
-    # TODO load car_images
 
     filter_params
     |> Enum.reduce(query, fn

@@ -13,7 +13,6 @@ defmodule RentCarsWeb.Api.Admin.CarController do
     end
   end
 
-  @spec update(any(), map()) :: any()
   def update(conn, %{"id" => id, "car" => car_params}) do
     with {:ok, car} <- Cars.update(id, car_params) do
       conn
