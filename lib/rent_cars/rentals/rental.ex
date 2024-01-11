@@ -10,10 +10,10 @@ defmodule RentCars.Rentals.Rental do
   @foreign_key_type :binary_id
 
   schema "rentals" do
-    field :total, :integer
     field :start_date, :naive_datetime
     field :end_date, :naive_datetime
     field :expected_return_date, :naive_datetime
+    field :total, Money.Ecto.Amount.Type
     belongs_to :car, Car
     belongs_to :user, User
 
