@@ -13,4 +13,12 @@ defmodule RentCarsWeb.Api.RentalController do
       |> render(:show, rental: rental)
     end
   end
+
+  def index(conn, _params) do
+    [user_id] = get_req_header(conn, "user_id")
+    rentals = Rentals.list_rentals(user_id)
+
+    conn
+    |> render(:index, rentals: rentals)
+  end
 end

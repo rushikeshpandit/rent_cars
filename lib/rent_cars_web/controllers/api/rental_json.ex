@@ -16,6 +16,12 @@ defmodule RentCarsWeb.Api.RentalJSON do
     %{data: data(rental)}
   end
 
+  def index(%{rentals: rentals}) do
+    %{
+      data: Enum.map(rentals, &data/1)
+    }
+  end
+
   def data(%Rental{} = rental) do
     %{
       id: rental.id,
