@@ -26,7 +26,8 @@ defmodule RentCarsWeb.Api.Admin.CarJSON do
       fine_amount: Money.to_string(car.fine_amount),
       category_id: car.category_id,
       specifications: load_specifications(car.specifications),
-      name: car.name
+      name: car.name,
+      available: car.available
     }
   end
 
