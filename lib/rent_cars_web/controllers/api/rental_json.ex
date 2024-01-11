@@ -31,7 +31,8 @@ defmodule RentCarsWeb.Api.RentalJSON do
       car: load_car(rental.car, rental.car_id),
       user_id: rental.user_id,
       inserted_at: rental.inserted_at,
-      updated_at: rental.updated_at
+      updated_at: rental.updated_at,
+      total: Money.to_string((rental.total == nil && Money.new(0)) || rental.total)
     }
   end
 
