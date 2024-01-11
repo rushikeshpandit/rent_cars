@@ -3,10 +3,10 @@ defmodule RentCars.Rentals.CreateRental do
   alias RentCars.Repo
 
   def execute(car_id) do
-    is_car_available?(car_id)
+    car_available?(car_id)
   end
 
-  defp is_car_available?(car_id) do
+  defp car_available?(car_id) do
     Car
     |> Repo.get(car_id)
     |> check_car_availability()
