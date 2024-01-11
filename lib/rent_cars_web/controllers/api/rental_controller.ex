@@ -8,7 +8,9 @@ defmodule RentCarsWeb.Api.RentalController do
     params = Map.put(params, "user_id", user_id)
 
     with {:ok, %{rental: rental}} <- Rentals.create(params) do
-      conn |> put_status(:created) |> render("show.json", rental: rental)
+      conn
+      |> put_status(:created)
+      |> render(:show, rental: rental)
     end
   end
 end
