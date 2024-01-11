@@ -2,8 +2,8 @@ defmodule RentCars.Rentals.Rental do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @fields [:start_date, :end_date, :expected_return_date, :total]
-
+  @fields [:end_date, :total]
+  @required [:start_date, :expected_return_date, :car_id, :user_id]
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
@@ -21,7 +21,7 @@ defmodule RentCars.Rentals.Rental do
   @doc false
   def changeset(rental, attrs) do
     rental
-    |> cast(attrs, @fields)
-    |> validate_required(@fields)
+    |> cast(attrs, @fields ++ @required)
+    |> validate_required(@required)
   end
 end
