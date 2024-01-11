@@ -49,6 +49,7 @@ defmodule RentCarsWeb.Router do
       pipe_through :authenticated
       post "/session/me", SessionController, :me
       get "/users/:id", UserController, :show
+      post "/rentals", RentalController, :create
     end
 
     post "/users", UserController, :create
