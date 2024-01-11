@@ -1,6 +1,6 @@
 defmodule RentCarsWeb.Api.RentalJSON do
-  alias RentCarsWeb.Api.Admin.CarJSON
   alias RentCars.Rentals.Rental
+  alias RentCarsWeb.Api.Admin.CarJSON
   # If you want to customize a particular status code,
   # you may add your own clauses, such as:
   #
