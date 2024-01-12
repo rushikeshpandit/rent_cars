@@ -34,6 +34,9 @@ config :rent_cars, RentCars.Mailer, adapter: Swoosh.Adapters.Local
 config :money,
   default_currency: :USD
 
+config :waffle,
+  storage: Waffle.Storage.Local
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
