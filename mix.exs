@@ -67,7 +67,9 @@ defmodule RentCars.MixProject do
       {:argon2_elixir, "~> 4.0"},
       {:phoenix_swoosh, "~> 1.0"},
       {:money, "~> 1.12"},
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+      {:waffle, "~> 1.1"},
+      {:waffle_ecto, "~> 0.0.11"}
     ]
   end
 
