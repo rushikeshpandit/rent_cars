@@ -16,4 +16,16 @@ defmodule RentCarsWeb.Api.AccountControllerTest do
              "email" => ^email
            } = json_response(conn, 200)["data"]
   end
+
+  test "upload user image", %{conn: conn, user: _user} do
+    photo = %Plug.Upload{
+      content_type: "image/jpg",
+      filename: "1.jpg",
+      path: "test/support/fixtures/1.jpg"
+    }
+
+    conn = patch(conn, Routes.api_user_path(conn, :upload_photo), avatar: photo)
+
+    assert json_response(conn, 201)["data"]["avatar"] |> String.contains?("1.jpg")
+  end
 end
