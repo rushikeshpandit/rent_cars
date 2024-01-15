@@ -42,6 +42,7 @@ defmodule RentCarsWeb.Router do
 
       post "/car", CarController, :create
       put "/car/:id", CarController, :update
+      patch "/car/images/:id", CarController, :create_images
       get "/car/:id", CarController, :show
     end
 
