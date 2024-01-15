@@ -25,7 +25,7 @@ defmodule RentCarsWeb.Api.UserJSON do
       email: user.email,
       drive_license: user.drive_license,
       role: user.role,
-      avatar: Avatar.url({user.avatar, user}),
+      avatar: Avatar.url({user.avatar, user}, signed: true),
       inserted_at: user.inserted_at,
       updated_at: user.updated_at
     }
