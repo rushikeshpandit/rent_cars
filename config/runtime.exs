@@ -105,7 +105,7 @@ if config_env() == :prod do
   #
   config :rent_cars, RentCars.Mailer,
     adapter: Swoosh.Adapters.Sendgrid,
-    api_key: System.get_env("SENDGRID_TOKEN_GOES_HERE")
+    api_key: System.get_env("SENDGRID_TOKEN")
 
   #
   # For this example you need include a HTTP client required by Swoosh API client.
