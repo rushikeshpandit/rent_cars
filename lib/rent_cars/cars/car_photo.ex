@@ -13,7 +13,7 @@ defmodule RentCars.Cars.CarPhoto do
     end
   end
 
-  def storage_dir(_, {_file, car}) do
-    "uploads/cars/#{car.id}"
+  def storage_dir(_, {_file, car_images}) do
+    "uploads/car_image/#{car_images.car_id}"
   end
 end
