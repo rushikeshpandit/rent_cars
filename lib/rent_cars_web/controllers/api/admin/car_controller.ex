@@ -26,4 +26,13 @@ defmodule RentCarsWeb.Api.Admin.CarController do
     car = Cars.get_car!(id)
     render(conn, :show, car: car)
   end
+
+  def create_images(conn, %{"id" => id, "images" => images}) do
+    with {:ok, car} <- Cars.create_images(id, images) do
+      conn
+      |> put_status(:created)
+      |> put_resp_header("location", Routes.api_admin_car_path(conn, :show, car))
+      |> render(:show, car: car)
+    end
+  end
 end
