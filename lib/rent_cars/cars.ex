@@ -3,7 +3,7 @@ defmodule RentCars.Cars do
   alias __MODULE__.Car
   alias RentCars.Repo
 
-  def get_car!(id), do: Repo.get!(Car, id) |> Repo.preload(:specifications)
+  def get_car!(id), do: Repo.get!(Car, id) |> Repo.preload([:specifications, :images])
 
   def create(attrs) do
     %Car{}
@@ -38,7 +38,7 @@ defmodule RentCars.Cars do
         |> join(:inner, [c], ca in assoc(c, :category))
         |> where([_c, ca], ilike(ca.name, ^category))
     end)
-    |> preload([:specifications])
+    |> preload([:specifications, :images])
     |> Repo.all()
   end
 

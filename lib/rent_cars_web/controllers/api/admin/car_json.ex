@@ -1,5 +1,6 @@
 defmodule RentCarsWeb.Api.Admin.CarJSON do
   alias RentCars.Cars.Car
+  alias RentCars.Cars.CarPhoto
   alias RentCarsWeb.Api.Admin.SpecificationJSON
   # If you want to customize a particular status code,
   # you may add your own clauses, such as:
@@ -26,6 +27,7 @@ defmodule RentCarsWeb.Api.Admin.CarJSON do
       fine_amount: Money.to_string(car.fine_amount),
       category_id: car.category_id,
       specifications: load_specifications(car.specifications),
+      images: load_images(car),
       name: car.name,
       available: car.available
     }
@@ -36,6 +38,14 @@ defmodule RentCarsWeb.Api.Admin.CarJSON do
       SpecificationJSON.index(%{specifications: specifications})
     else
       nil
+    end
+  end
+
+  defp load_images(%{images: images} = car) do
+    if Ecto.assoc_loaded?(car.images) do
+      Enum.map(images, &CarPhoto.url({&1.image, &1}))
+    else
+      []
     end
   end
 end
